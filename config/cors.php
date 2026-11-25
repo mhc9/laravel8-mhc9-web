@@ -17,9 +17,9 @@ return [
 
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
-
-    'allowed_origins' => ['*'],
+    'allowed_origins' => array_map('trim', explode(',', env('CORS_ALLOWED_ORIGINS', ''))),
+    
+    'allowed_methods' => array_map('trim', explode(',', env('CORS_ALLOWED_METHODS', '*'))),
 
     'allowed_origins_patterns' => [],
 
@@ -29,6 +29,6 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];

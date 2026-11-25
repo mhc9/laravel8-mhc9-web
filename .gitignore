@@ -21,3 +21,11 @@ yarn-error.log
 /.idea
 /.vscode
 /public/mix-manifest.json
+
+# AI agent configuration
+.agents/
+.gemini/
+.claude/
+.codex/
+.github/
+skills-lock.json

@@ -14,8 +14,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    /** Posts */
+    // Route::get('/posts', 'App\Http\Controllers\PostController@getAll');
+    // Route::get('/posts/search', 'App\Http\Controllers\PostController@search');
+    // Route::get('/posts/{id}', 'App\Http\Controllers\PostController@getById');
+    // Route::get('/posts/init/form', 'App\Http\Controllers\PostController@getInitialFormData');
+    // Route::post('/posts', 'App\Http\Controllers\PostController@store');
+    // Route::put('/posts/{id}', 'App\Http\Controllers\PostController@update');
+    // Route::delete('/posts/{id}', 'App\Http\Controllers\PostController@destroy');
 });
 
 Route::group(['middleware' => 'api', 'prefix' => 'auth'], function() {
@@ -89,10 +100,10 @@ Route::middleware('auth:api')->group(function() {
     Route::delete('/units/{id}', 'App\Http\Controllers\UnitController@destroy');
 
     /** Posts */
-    Route::get('/posts', 'App\Http\Controllers\PostController@getAll');
+    Route::get('/posts/init/form', 'App\Http\Controllers\PostController@getInitialFormData');
     Route::get('/posts/search', 'App\Http\Controllers\PostController@search');
     Route::get('/posts/{id}', 'App\Http\Controllers\PostController@getById');
-    Route::get('/posts/init/form', 'App\Http\Controllers\PostController@getInitialFormData');
+    Route::get('/posts', 'App\Http\Controllers\PostController@getAll');
     Route::post('/posts', 'App\Http\Controllers\PostController@store');
     Route::put('/posts/{id}', 'App\Http\Controllers\PostController@update');
     Route::delete('/posts/{id}', 'App\Http\Controllers\PostController@destroy');

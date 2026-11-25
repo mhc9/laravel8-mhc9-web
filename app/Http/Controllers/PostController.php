@@ -137,10 +137,10 @@ class PostController extends Controller
 
     public function getInitialFormData()
     {
-        return [
+        return response()->json([
             'categories'    => PostCategory::all(),
             'authors'       => User::all(),
-        ];
+        ]);
     }
 
     public function store(Request $req)
@@ -149,22 +149,22 @@ class PostController extends Controller
             $post = $this->postService->createPost($req);
 
             if($post->save()) {
-                return [
+                return response()->json([
                     'status'    => 1,
                     'message'   => 'Insertion successfully!!',
                     'post'      => $post->load(['category','author'])
-                ];
+                ]);
             } else {
-                return [
+                return response()->json([
                     'status'    => 0,
                     'message'   => 'Something went wrong!!'
-                ];
+                ]);
             }
         } catch (\Exception $ex) {
-            return [
+            return response()->json([
                 'status'    => 0,
                 'message'   => $ex->getMessage()
-            ];
+            ]);
         }
     }
 
